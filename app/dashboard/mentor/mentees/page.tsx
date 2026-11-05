@@ -1,0 +1,5 @@
+import Link from "next/link";
+import { DashboardPageHeader, DashboardShell, Icon, StatusPill } from "../../../platform";
+export default function MentorMenteesPage() {
+  return <DashboardShell role="mentor"><DashboardPageHeader eyebrow="Your people" title={<>My <em>mentees.</em></>} description="See the goals, focus areas and momentum of the young people you support." /><section className="dash-panel full-panel"><div className="directory-mini-grid">{[["Jordan A.", "Career clarity", "72%", "jordan"], ["Lydia M.", "Interview confidence", "48%", "lydia"], ["Samuel O.", "Business model", "35%", "samuel"], ["Amina K.", "Digital portfolio", "61%", "amina"]].map(([name, focus, progress, id]) => <article className="mentee-card" key={name}><span className="user-avatar">{name.charAt(0)}</span><div><strong>{name}</strong><small>{focus}</small><div className="progress"><span style={{ width: progress }} /></div></div><StatusPill>Active</StatusPill><Link className="text-link" href={`/dashboard/mentor/mentees/${id}`}>Open profile <Icon name="arrow" size={14} /></Link></article>)}</div></section></DashboardShell>;
+}

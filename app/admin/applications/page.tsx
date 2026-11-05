@@ -1,0 +1,7 @@
+"use client";
+import { useState } from "react";
+import { ActionCard, DashboardPageHeader, DashboardShell, DashboardTable, Icon } from "../../platform";
+export default function AdminApplicationsPage() {
+  const [filter, setFilter] = useState("All applications");
+  return <DashboardShell role="admin"><DashboardPageHeader eyebrow="Selection pipeline" title={<>Review the next<br /><em>cohort.</em></>} description="Move applications from first review to a clear, documented decision." action={<ActionCard title="Export applications" description="Your filtered applications list is ready to export once live programme data is connected."><span className="button button-outline"><Icon name="download" size={16} /> Export CSV</span></ActionCard>} /><section className="dash-panel full-panel"><div className="table-toolbar"><input placeholder="Search applicants" /><select value={filter} onChange={(e) => setFilter(e.target.value)}><option>All applications</option><option>New</option><option>Shortlisted</option><option>Under review</option></select></div><DashboardTable headers={["Applicant", "Pathway", "Location", "Status"]} rows={[["Lydia Mensah", "Digital skills", "Accra, Ghana", "Under review"], ["Samuel Owusu", "Entrepreneurial skills", "Kumasi, Ghana", "Shortlisted"], ["Amina K.", "Employability skills", "Nairobi, Kenya", "New"], ["Kofi B.", "Digital skills", "Lagos, Nigeria", "Under review"]].filter((row) => filter === "All applications" || row[3] === filter)} /></section></DashboardShell>;
+}

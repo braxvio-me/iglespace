@@ -1,0 +1,8 @@
+"use client";
+import { useState } from "react";
+import { DashboardPageHeader, DashboardShell, Icon } from "../../../platform";
+export default function ParticipantMessagesPage() {
+  const [message, setMessage] = useState("");
+  const [sent, setSent] = useState<string[]>([]);
+  return <DashboardShell role="participant"><DashboardPageHeader eyebrow="Stay connected" title={<>Your <em>messages.</em></>} description="Keep questions, feedback and next steps in one place." /><div className="messages-layout"><aside className="conversation-list"><div className="conversation active"><span className="user-avatar">AO</span><div><strong>Amara Okafor</strong><small>Career clarity & positioning</small></div><b>2</b></div><div className="conversation"><span className="user-avatar">DC</span><div><strong>David Chen</strong><small>AI productivity workflow</small></div></div></aside><section className="chat-panel"><div className="chat-header"><span className="user-avatar">AO</span><div><strong>Amara Okafor</strong><small>Usually replies within a day</small></div></div><div className="chat-messages"><div className="message received">What would you like to make clearer before our next session?</div>{sent.map((item) => <div className="message sent" key={item}>{item}</div>)}</div><form className="message-form" onSubmit={(event) => { event.preventDefault(); if (message.trim()) { setSent([...sent, message.trim()]); setMessage(""); } }}><input value={message} onChange={(event) => setMessage(event.target.value)} placeholder="Write a message..." /><button className="button button-dark" type="submit" aria-label="Send message"><Icon name="arrow" size={17} /></button></form></section></div></DashboardShell>;
+}

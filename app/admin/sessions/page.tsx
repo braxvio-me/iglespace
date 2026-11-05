@@ -1,0 +1,4 @@
+import { DashboardPageHeader, DashboardShell, DashboardTable, StatusPill } from "../../platform";
+export default function AdminSessionsPage() {
+  return <DashboardShell role="admin"><DashboardPageHeader eyebrow="Programme delivery" title={<>Keep every session<br /><em>moving.</em></>} description="Monitor mentoring activity and see where programme support is needed." /><section className="dash-panel full-panel"><DashboardTable headers={["Date", "Participant", "Mentor", "Focus"]} rows={[["18 Nov 2026", "Jordan A.", "Amara Okafor", "Career clarity"], ["21 Nov 2026", "Lydia M.", "David Chen", "Interview confidence"], ["26 Nov 2026", "Samuel O.", "Nia Williams", "Business model"]]}/><div className="admin-summary"><StatusPill>42 completed</StatusPill><StatusPill tone="amber">8 awaiting feedback</StatusPill></div></section></DashboardShell>;
+}
