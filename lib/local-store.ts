@@ -22,3 +22,7 @@ export function writeStore<T>(key: string, value: T) {
 export function setDemoRole(role: PortalRole) {
   window.sessionStorage.setItem(`${prefix}role`, role);
 }
+
+export function clearDemoRole() {
+  window.sessionStorage.removeItem(`${prefix}role`);
+}
