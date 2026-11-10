@@ -1,7 +1,6 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import Link from "next/link";
 import { languages, useLanguage } from "../lib/i18n";
 
 type IconName =
@@ -83,9 +82,10 @@ export default function Home() {
   const { language, setLanguage, t } = useLanguage();
   const [query, setQuery] = useState("");
   const [activeCategory, setActiveCategory] = useState("All mentors");
+  const [showAll, setShowAll] = useState(false);
 
   const visibleMentors = useMemo(() => {
-    return mentors.filter((mentor) => {
+    const filtered = mentors.filter((mentor) => {
       const matchesQuery =
         !query ||
         `${mentor.name} ${mentor.role}`.toLowerCase().includes(query.toLowerCase());
@@ -94,7 +94,8 @@ export default function Home() {
         mentor.category.toLowerCase().includes(activeCategory.split(" ")[0].toLowerCase());
       return matchesQuery && matchesCategory;
     });
-  }, [activeCategory, query]);
+    return showAll ? [...filtered, ...filtered] : filtered;
+  }, [activeCategory, query, showAll]);
 
   return (
     <main>
@@ -192,12 +193,12 @@ export default function Home() {
                   <span className="available-badge"><span /> Available</span>
                 </div>
                 <div className="mentor-info"><div><h3>{mentor.name}</h3><p>{mentor.role}</p></div><span className="rating"><Icon name="image" size={13} /> 5.0</span></div>
-                <Link className="card-link" href="/mentors">Meet contributors <Icon name="arrow" size={16} /></Link>
+                <a className="card-link" href="#get-started">View profile <Icon name="arrow" size={16} /></a>
               </article>
             ))}
           </div>
         ) : <div className="empty-state"><Icon name="search" size={24} /><h3>No mentors found</h3><p>Try a different search or explore all mentors.</p><button className="text-link" onClick={() => { setQuery(""); setActiveCategory("All mentors"); }}>Clear filters <Icon name="arrow" size={16} /></button></div>}
-        <div className="center-action"><Link className="button button-outline" href="/mentors">Explore all mentors <Icon name="arrow" size={17} /></Link></div>
+        <div className="center-action"><button className="button button-outline" onClick={() => setShowAll(!showAll)}>{showAll ? "Show fewer mentors" : "Explore all mentors"} <Icon name="arrow" size={17} /></button></div>
       </section>
 
       <section className="how-section section" id="how-it-works">
@@ -216,7 +217,7 @@ export default function Home() {
       </section>
 
       <section className="final-cta section" id="become-a-mentor">
-        <p className="eyebrow">Be part of the ecosystem</p><h2>Invest in the next<br /><em>generation.</em></h2><p>Bring your time, knowledge, networks, resources or opportunities to a collaborative programme preparing 100 young people for what&apos;s next.</p><div className="hero-actions"><a className="button button-dark" href="/apply">Apply to join <Icon name="arrow" size={16} /></a><a className="button button-outline" href="/partners">Partner with IGLE_SPACE <Icon name="arrow" size={16} /></a></div>
+        <p className="eyebrow">Be part of the ecosystem</p><h2>Invest in the next<br /><em>generation.</em></h2><p>Bring your time, knowledge, networks, resources or opportunities to a collaborative programme preparing 100 young people for what&apos;s next.</p><div className="hero-actions"><a className="button button-dark" href="#sign-in">Apply to join <Icon name="arrow" size={16} /></a><a className="button button-outline" href="#become-a-mentor">Partner with IGLE_SPACE <Icon name="arrow" size={16} /></a></div>
       </section>
 
       <footer className="footer" id="sign-in">
