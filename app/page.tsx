@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import Link from "next/link";
 import { languages, useLanguage } from "../lib/i18n";
 
 type IconName =
@@ -132,7 +133,7 @@ export default function Home() {
           <p className="hero-text">{t("heroText")}</p>
           <div className="hero-actions">
             <a className="button button-accent" href="#get-started">{t("join")} <Icon name="arrow" size={17} /></a>
-            <a className="text-link" href="#become-a-mentor">{t("partnerWithUs")} <Icon name="arrow" size={16} /></a>
+            <Link className="text-link" href="/partners">{t("partnerWithUs")} <Icon name="arrow" size={16} /></Link>
           </div>
           <div className="hero-proof">
             <div className="avatar-stack" aria-hidden="true">
@@ -213,11 +214,11 @@ export default function Home() {
 
       <section className="quote-section" id="get-started">
         <div className="quote-image" />
-        <div className="quote-copy"><span className="quote-mark">“</span><blockquote>One opportunity can change someone&apos;s trajectory.</blockquote><p>IGLE_SPACE Youth Mentorship Program</p><a className="text-link text-link-light" href="#become-a-mentor">Become a programme partner <Icon name="arrow" size={16} /></a></div>
+        <div className="quote-copy"><span className="quote-mark">“</span><blockquote>One opportunity can change someone&apos;s trajectory.</blockquote><p>IGLE_SPACE Youth Mentorship Program</p><Link className="text-link text-link-light" href="/partners">Become a programme partner <Icon name="arrow" size={16} /></Link></div>
       </section>
 
       <section className="final-cta section" id="become-a-mentor">
-        <p className="eyebrow">Be part of the ecosystem</p><h2>Invest in the next<br /><em>generation.</em></h2><p>Bring your time, knowledge, networks, resources or opportunities to a collaborative programme preparing 100 young people for what&apos;s next.</p><div className="hero-actions"><a className="button button-dark" href="#sign-in">Apply to join <Icon name="arrow" size={16} /></a><a className="button button-outline" href="#become-a-mentor">Partner with IGLE_SPACE <Icon name="arrow" size={16} /></a></div>
+        <p className="eyebrow">Be part of the ecosystem</p><h2>Invest in the next<br /><em>generation.</em></h2><p>Bring your time, knowledge, networks, resources or opportunities to a collaborative programme preparing 100 young people for what&apos;s next.</p><div className="hero-actions"><a className="button button-dark" href="#sign-in">Apply to join <Icon name="arrow" size={16} /></a><Link className="button button-outline" href="/partners">Partner with IGLE_SPACE <Icon name="arrow" size={16} /></Link></div>
       </section>
 
       <footer className="footer" id="sign-in">
